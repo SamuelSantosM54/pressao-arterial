@@ -8,6 +8,7 @@ import "react-native-reanimated";
 import { Platform } from "react-native";
 import "@/lib/_core/nativewind-pressable";
 import { ThemeProvider } from "@/lib/theme-provider";
+import { ReadingsProvider } from "@/lib/readings-context";
 import {
   SafeAreaFrameContext,
   SafeAreaInsetsContext,
@@ -79,6 +80,7 @@ export default function RootLayout() {
   }, [initialInsets, initialFrame]);
 
   const content = (
+    <ReadingsProvider>
     <GestureHandlerRootView style={{ flex: 1 }}>
       <trpc.Provider client={trpcClient} queryClient={queryClient}>
         <QueryClientProvider client={queryClient}>
@@ -93,6 +95,7 @@ export default function RootLayout() {
         </QueryClientProvider>
       </trpc.Provider>
     </GestureHandlerRootView>
+    </ReadingsProvider>
   );
 
   const shouldOverrideSafeArea = Platform.OS === "web";
