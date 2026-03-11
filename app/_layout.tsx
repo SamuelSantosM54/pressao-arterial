@@ -9,6 +9,7 @@ import { Platform } from "react-native";
 import "@/lib/_core/nativewind-pressable";
 import { ThemeProvider } from "@/lib/theme-provider";
 import { ReadingsProvider } from "@/lib/readings-context";
+import { UserProfileProvider } from "@/lib/user-profile-context";
 import {
   SafeAreaFrameContext,
   SafeAreaInsetsContext,
@@ -81,6 +82,7 @@ export default function RootLayout() {
 
   const content = (
     <ReadingsProvider>
+    <UserProfileProvider>
     <GestureHandlerRootView style={{ flex: 1 }}>
       <trpc.Provider client={trpcClient} queryClient={queryClient}>
         <QueryClientProvider client={queryClient}>
@@ -95,6 +97,7 @@ export default function RootLayout() {
         </QueryClientProvider>
       </trpc.Provider>
     </GestureHandlerRootView>
+    </UserProfileProvider>
     </ReadingsProvider>
   );
 
